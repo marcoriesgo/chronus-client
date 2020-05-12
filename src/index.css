@@ -18,6 +18,23 @@ code {
     monospace;
 }
 
+.btn-primary {
+  background: rgba(5,111,146,1);
+  opacity: 0.85;
+  transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: rgb(4, 101, 133);
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -webkit-transition: opacity 0.3s ease-in-out;
+}
+
 .navbar-fixed {
   background: linear-gradient( 315deg,  rgba(5,111,146,1) 13.5%, rgba(6,57,84,1) 78.6% );
   height: 60px;
@@ -74,6 +91,19 @@ code {
   text-align: left;
   margin-bottom: 15px;
   padding-left: 10px;
+}
+
+.members-intro-message {
+  text-align: left;
+  margin-bottom: 15px;
+  padding-left: 10px;
+  display: inline-block;
+  margin-right: 25%;
+}
+
+.add-member-button {
+  display: inline-block;
+  margin-left: 25%;
 }
 
 .category-dashboard-card {

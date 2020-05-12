@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Router, Link } from "react-router-dom";
 
 class Dashboard extends Component {
     state = {
@@ -25,6 +26,14 @@ class Dashboard extends Component {
         .catch( error => console.error(error))
     }
 
+    // onAddUserClick = () => {
+
+    // }
+
+    getCategory = (category) => {
+        this.props.history.push("/categories/" + category.id)
+    }
+
     render() {
         console.log(this.state.users)
         console.log(this.state.categories)
@@ -35,7 +44,7 @@ class Dashboard extends Component {
                 {this.state.categories.map( category => {
                     return (
                     <div className="category-dashboard-card">
-                        <div key={category.id}>
+                        <div key={category.id} onClick={() => this.getCategory(category)}>
                             {/* <div className="category-img-container">
                                 <img src={category.icon} alt={category.name} className="category-image"/>
                             </div> */}
@@ -47,7 +56,10 @@ class Dashboard extends Component {
                     )
                     })}
             </div>
-            <h4 className="dashboard-intro-message">Chronos Community Members</h4>
+            <div className="dashboard-navigation">
+                <h4 className="members-intro-message">Chronos Community Members</h4>
+                <Link to="/createmember" className="btn btn-primary btn-sm add-member-button">Add Member</Link>
+            </div>
             <div className="user-dashboard-container">
                 {this.state.users.map( user => {
                     return (
