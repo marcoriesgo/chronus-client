@@ -7,7 +7,7 @@ import Navbar from './components/Navbar.js'
 import Dashboard from './components/Dashboard.js'
 import CreateUser from './components/CreateUser.js'
 import CategoryDashboard from './components/CategoryDashboard.js'
-
+import ViewUser from './components/ViewUser.js'
 
 class App extends Component {
   render() {
@@ -19,6 +19,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/categories/:id' component={CategoryDashboard} />
           <Route exact path='/categories/:id/createmember' component={CreateUser} />
+          <Route exact path='/categories/:id/users/:id' component={ViewUser} />
         </Switch>
       </Router>
 

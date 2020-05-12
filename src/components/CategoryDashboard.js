@@ -33,6 +33,10 @@ class CategoryDashboard extends Component {
         this.props.history.push("/categories/" + this.state.category.id + "/createmember")
     }
 
+    getUser = (user) => {
+        this.props.history.push("/categories/" + this.state.category.id + "/users/" + user.id)
+    }
+
     render() {
         console.log(this.state.categoryUsers)
         console.log(this.state.category)
@@ -49,7 +53,7 @@ class CategoryDashboard extends Component {
                 {this.state.categoryUsers.map( user => {
                     return (
                     <div className="user-dashboard-card">
-                    <div key={user.id}>
+                    <div key={user.id} onClick={() => this.getUser(user)}>
                         <img src={user.img} alt={user.name} className="user-image"/>
                         <h4 className="user-name">{user.name}</h4>
                         <h5 className="user-description">Hours in Bank: {user.time_bank}</h5>
