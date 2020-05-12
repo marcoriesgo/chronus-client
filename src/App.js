@@ -16,9 +16,9 @@ class App extends Component {
       <Router>
         <Navbar />
         <Route exact path='/' component={Dashboard} />
-        <Route exact path='/createmember' component={CreateUser} />
         <Switch>
           <Route exact path='/categories/:id' component={CategoryDashboard} />
+          <Route exact path='/categories/:id/createmember' component={CreateUser} />
         </Switch>
       </Router>
 
