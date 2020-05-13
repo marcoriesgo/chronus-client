@@ -9,7 +9,8 @@ class ViewUser extends Component {
         editMessage: false,
         author: '',
         title: '',
-        content: ''
+        content: '',
+        messageId: ''
         
     }
 
@@ -43,7 +44,7 @@ class ViewUser extends Component {
     }
 
     handleOpenEditMessageUser = (message) => {
-        this.setState({editMessage: true, author: message.author, title: message.title, content: message.content})
+        this.setState({editMessage: true, author: message.author, title: message.title, content: message.content, messageId: message.id})
     }
     handleCloseEditMessageUser = () => {
         this.setState({editMessage: false})
@@ -78,7 +79,7 @@ class ViewUser extends Component {
     }
 
     handleEditMessageSubmit = () => {
-        fetch('http://localhost:3000' + this.props.history.location.pathname + '/messages/' + this.state.editMessage.id,{
+        fetch('http://localhost:3000' + this.props.history.location.pathname + '/messages/' + this.state.messageId,{
         body: JSON.stringify({
           author: this.state.author,
           title: this.state.title,
@@ -96,7 +97,9 @@ class ViewUser extends Component {
             title: '',
             content: ''
         })
+        console.log(res)
       })
+      
       .then(this.handleCloseEditMessageUser)
       .then(this.getUserMessages)
       .catch(error => console.error({ Error: error }));
