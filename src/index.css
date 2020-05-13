@@ -213,12 +213,17 @@ input {
 .profile-image {
   border-radius: 50%;
   border: 2px solid #063953;
+  margin-bottom: 8px;
 }
 
 .profile-name {
   margin-top: 10px;
-  font-size: 32px;
+  font-size: 28px;
   
+}
+
+.profile-description {
+  margin-top: 15px;
 }
 
 hr { 
@@ -228,7 +233,50 @@ hr {
   border-top: 1px solid rgba(5, 111, 146, 0.345);
   padding: 0;
   width: 90%; 
+  margin-top: 30px;
 }
+
+.user-message-card {
+  width: 500px;
+  border: 1px solid #063953;
+  background: rgb(213, 213, 213);
+  border-radius: 10px;
+  min-height: 200px;
+  text-align: left;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 20px;
+  margin-top: 15px;
+  display: inline-block;
+}
+
+.add-message-button {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.message-input {
+  margin-bottom: 0px;
+  margin-bottom: 0px;
+  width: 50%;
+}
+
+.message-message {
+  height: 100px;
+  width: 50%; 
+}
+
+#submit-message-button {
+  width: 30%;
+  margin-bottom: 1em;
+}
+
+#submit-cancel-button {
+  width: 30%;
+  margin-top: 0;
+  margin-bottom: 2em;
+}
+
 
 
 

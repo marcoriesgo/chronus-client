@@ -8,8 +8,6 @@ class CategoryDashboard extends Component {
         category: []
     }
 
-    
-
     componentDidMount() {
         this.getCategoryUsers()
         this.getCategory()
@@ -50,20 +48,20 @@ class CategoryDashboard extends Component {
             <h4 >{this.state.category.description}</h4>
         </div>
         <div className="user-dashboard-container">
-                {this.state.categoryUsers.map( user => {
-                    return (
-                    <div className="user-dashboard-card">
-                    <div key={user.id} onClick={() => this.getUser(user)}>
-                        <img src={user.img} alt={user.name} className="user-image"/>
-                        <h4 className="user-name">{user.name}</h4>
-                        <h5 className="user-description">Hours in Bank: {user.time_bank}</h5>
-                        <h5 className="user-description">{user.location}</h5>
-                        <h5 className="user-description">{user.specialization}</h5>
-                    </div>
-                    </div>
-                    )
-                    })}
-            </div>
+            {this.state.categoryUsers.map( user => {
+                return (
+                <div className="user-dashboard-card">
+                <div key={user.id} onClick={() => this.getUser(user)}>
+                    <img src={user.img} alt={user.name} className="user-image"/>
+                    <h4 className="user-name">{user.name}</h4>
+                    <h5 className="user-description">Hours in Bank: {user.time_bank}</h5>
+                    <h5 className="user-description">{user.location}</h5>
+                    <h5 className="user-description">{user.specialization}</h5>
+                </div>
+                </div>
+                )
+            })}
+        </div>
       </div>
     );
     }
