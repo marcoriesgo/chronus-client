@@ -1,5 +1,12 @@
 import React, { Component } from "react";
 
+let baseURL = process.env.REACT_APP_BASEURL
+if (process.env.NODE_ENV === 'development') {
+    baseURL = 'http://localhost:3000'
+  } else {
+    baseURL = 'https://chronos-app-api.herokuapp.com'
+  }
+
 class ViewUser extends Component {
 
     state = {
@@ -23,14 +30,14 @@ class ViewUser extends Component {
         this.getUserMessages()
     }
     getUser = () => {
-        fetch('https://chronos-app-api.herokuapp.com' + this.props.history.location.pathname)
+        fetch(baseURL + this.props.history.location.pathname)
         .then(res => res.json())
         .then(jsonedUser => this.setState({user: jsonedUser}))
         .catch( error => console.error(error))
     }
 
     getUserMessages = () => {
-        fetch('https://chronos-app-api.herokuapp.com' + this.props.history.location.pathname + "/messages")
+        fetch(baseURL + this.props.history.location.pathname + "/messages")
         .then(res => res.json())
         .then(jsonedUserMessages => this.setState({userMessages: jsonedUserMessages}))
         .catch( error => console.error(error))
@@ -53,7 +60,7 @@ class ViewUser extends Component {
 
     handleMessageSubmit = (event) => {
         event.preventDefault()
-        fetch('https://chronos-app-api.herokuapp.com' + this.props.history.location.pathname + '/messages',{
+        fetch(baseURL + this.props.history.location.pathname + '/messages',{
         body: JSON.stringify({
           author: this.state.author,
           title: this.state.title,
@@ -79,7 +86,7 @@ class ViewUser extends Component {
     }
 
     handleEditMessageSubmit = () => {
-        fetch('https://chronos-app-api.herokuapp.com' + this.props.history.location.pathname + '/messages/' + this.state.messageId,{
+        fetch(baseURL + this.props.history.location.pathname + '/messages/' + this.state.messageId,{
         body: JSON.stringify({
           author: this.state.author,
           title: this.state.title,
@@ -106,7 +113,7 @@ class ViewUser extends Component {
     }
 
     deleteMessage = id => {
-        fetch('https://chronos-app-api.herokuapp.com' + this.props.history.location.pathname + '/messages/' + id, {
+        fetch(baseURL + this.props.history.location.pathname + '/messages/' + id, {
           method: 'DELETE'
         }).then( res => {
           const messageArr = this.state.userMessages.filter( message => {

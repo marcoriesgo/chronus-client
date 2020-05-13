@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { Router, Link } from "react-router-dom";
 
+let baseURL = process.env.REACT_APP_BASEURL
+if (process.env.NODE_ENV === 'development') {
+    baseURL = 'http://localhost:3000'
+  } else {
+    baseURL = 'https://chronos-app-api.herokuapp.com'
+  }
+
 class CategoryDashboard extends Component {
 
     state = {
@@ -14,14 +21,14 @@ class CategoryDashboard extends Component {
     }
 
     getCategory = () => {
-        fetch('https://chronos-app-api.herokuapp.com/categories/' + this.props.match.params.id)
+        fetch(baseURL + '/categories/' + this.props.match.params.id)
         .then(res => res.json())
         .then(jsonedCategory => this.setState({category: jsonedCategory}))
         .catch( error => console.error(error))
     }
 
     getCategoryUsers = () => {
-        fetch('https://chronos-app-api.herokuapp.com/categories/' + this.props.match.params.id + "/users")
+        fetch(baseURL + '/categories/' + this.props.match.params.id + "/users")
         .then(res => res.json())
         .then(jsonedCategoryUsers => this.setState({categoryUsers: jsonedCategoryUsers}))
         .catch( error => console.error(error))
