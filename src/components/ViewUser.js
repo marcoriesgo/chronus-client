@@ -43,7 +43,7 @@ class ViewUser extends Component {
     }
 
     handleOpenEditMessageUser = (message) => {
-        this.setState({editMessage: true, editingMessage: message})
+        this.setState({editMessage: true, author: message.author, title: message.title, content: message.content})
     }
     handleCloseEditMessageUser = () => {
         this.setState({editMessage: false})
@@ -72,19 +72,19 @@ class ViewUser extends Component {
             content: ''
         })
       })
-      .then(this.handleEditCloseMessageUser)
+      .then(this.handleCloseMessageUser)
       .then(this.getUserMessages)
       .catch(error => console.error({ Error: error }));
     }
 
     handleEditMessageSubmit = () => {
-        fetch('http://localhost:3000' + this.props.history.location.pathname + '/messages/' + this.state.editingMessage.id,{
+        fetch('http://localhost:3000' + this.props.history.location.pathname + '/messages/' + this.state.editMessage.id,{
         body: JSON.stringify({
           author: this.state.author,
           title: this.state.title,
           content: this.state.content
         }),
-        method: 'PATCH',
+        method: 'PUT',
         headers: {
           'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json'
@@ -97,7 +97,7 @@ class ViewUser extends Component {
             content: ''
         })
       })
-      .then(this.handleCloseMessageUser)
+      .then(this.handleCloseEditMessageUser)
       .then(this.getUserMessages)
       .catch(error => console.error({ Error: error }));
     }
@@ -146,7 +146,7 @@ class ViewUser extends Component {
                             <input type="text" id="title" className="message-input" name="title" onChange={this.handleChange} placeholder="Title"/> <br />
                             <input type="text" id="author" className="message-input" name="author" onChange={this.handleChange} placeholder="Your Name"/> <br />
                             <input type="text" id="content" className="message-message" name="content" onChange={this.handleChange} placeholder="Message"/> <br />
-                            <input type="submit" className="btn btn-success" id="submit-message-button" value="Submit Member"/> <br />
+                            <input type="submit" className="btn btn-success" id="submit-message-button" value="Submit Message"/> <br />
                             <button onClick={this.handleCloseMessageUser} id="submit-cancel-button" className="btn btn-outline-danger">Cancel</button>
                         </form>
                     </div>
@@ -154,9 +154,9 @@ class ViewUser extends Component {
                     { this.state.editMessage ? 
                     <div className="message-form-container">
                         <form onSubmit={this.handleEditMessageSubmit} className="post-form">
-                            <input type="text" id="title" className="message-input" name="title" onChange={this.handleChange} placeholder="Title"/> <br />
-                            <input type="text" id="author" className="message-input" name="author" onChange={this.handleChange} placeholder="Your Name"/> <br />
-                            <input type="text" id="content" className="message-message" name="content" onChange={this.handleChange} placeholder="Message"/> <br />
+                            <input type="text" id="title" className="message-input" name="title" onChange={this.handleChange} value={this.state.title}/> <br />
+                            <input type="text" id="author" className="message-input" name="author" onChange={this.handleChange} value={this.state.author}/> <br />
+                            <input type="text" id="content" className="message-message" name="content" onChange={this.handleChange} value={this.state.content}/> <br />
                             <input type="submit" className="btn btn-success" id="submit-message-button" value="Submit Edit"/> <br />
                             <button onClick={this.handleCloseEditMessageUser} id="submit-cancel-button" className="btn btn-outline-danger">Cancel</button>
                         </form>

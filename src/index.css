@@ -214,6 +214,8 @@ input {
   border-radius: 50%;
   border: 2px solid #063953;
   margin-bottom: 8px;
+  height: 177px;
+  width: 177px;
 }
 
 .profile-name {
