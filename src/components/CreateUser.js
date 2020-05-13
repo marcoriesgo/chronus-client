@@ -1,13 +1,6 @@
 import React, { Component } from "react";
 import { Router, Link } from "react-router-dom";
 
-let baseURL = process.env.REACT_APP_BASEURL
-if (process.env.NODE_ENV === 'development') {
-    baseURL = 'http://localhost:3000'
-  } else {
-    baseURL = 'https://chronos-app-api.herokuapp.com'
-  }
-
 class CreateUser extends Component {
 
     state = {
@@ -32,7 +25,7 @@ class CreateUser extends Component {
     }
     
     getCategory = () => {
-        fetch(baseURL + '/categories/' + this.props.match.params.id)
+        fetch('https://chronos-app-api.herokuapp.com/categories/' + this.props.match.params.id)
         .then(res => res.json())
         .then(jsonedCategory => this.setState({category: jsonedCategory}))
         .catch( error => console.error(error))
@@ -40,7 +33,7 @@ class CreateUser extends Component {
 
     handleSubmit = (event) => {
       event.preventDefault()
-      fetch(baseURL + '/categories/' + this.props.match.params.id + '/users',{
+      fetch('https://chronos-app-api.herokuapp.com/categories/' + this.props.match.params.id + '/users',{
       body: JSON.stringify({
         name: this.state.name,
         time_bank: 1,

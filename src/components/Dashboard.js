@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import { Router, Link } from "react-router-dom";
 
-let baseURL = process.env.REACT_APP_BASEURL
-if (process.env.NODE_ENV === 'development') {
-    baseURL = 'http://localhost:3000'
-  } else {
-    baseURL = 'https://chronos-app-api.herokuapp.com'
-  }
 
 class Dashboard extends Component {
     state = {
@@ -18,7 +12,7 @@ class Dashboard extends Component {
     }
 
     getAllCategories = () => {
-        fetch(baseURL + '/categories')
+        fetch('https://chronos-app-api.herokuapp.com/categories')
         .then(res => res.json())
         .then(jsonedCategories => this.setState({categories: jsonedCategories}))
         .catch( error => console.error(error))
