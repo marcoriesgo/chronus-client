@@ -25,7 +25,7 @@ class CreateUser extends Component {
     }
     
     getCategory = () => {
-        fetch('http://localhost:3000/categories/' + this.props.match.params.id)
+        fetch('https://chronos-app-api.herokuapp.com/categories/' + this.props.match.params.id)
         .then(res => res.json())
         .then(jsonedCategory => this.setState({category: jsonedCategory}))
         .catch( error => console.error(error))
@@ -33,7 +33,7 @@ class CreateUser extends Component {
 
     handleSubmit = (event) => {
       event.preventDefault()
-      fetch('http://localhost:3000/categories/' + this.props.match.params.id + '/users',{
+      fetch('https://chronos-app-api.herokuapp.com/categories/' + this.props.match.params.id + '/users',{
       body: JSON.stringify({
         name: this.state.name,
         time_bank: 1,

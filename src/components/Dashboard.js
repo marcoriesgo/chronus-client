@@ -3,24 +3,15 @@ import { Router, Link } from "react-router-dom";
 
 class Dashboard extends Component {
     state = {
-        users: [],
         categories: []
     }
 
     componentDidMount() {
-        this.getAllUsers()
         this.getAllCategories()
-    }
-    getAllUsers = () => {
-        fetch('http://localhost:3000/users'
-        )
-        .then(res => res.json())
-        .then(jsonedUsers => this.setState({users: jsonedUsers}))
-        .catch( error => console.error(error))
     }
 
     getAllCategories = () => {
-        fetch('http://localhost:3000/categories')
+        fetch('https://chronos-app-api.herokuapp.com/categories')
         .then(res => res.json())
         .then(jsonedCategories => this.setState({categories: jsonedCategories}))
         .catch( error => console.error(error))
